@@ -459,9 +459,6 @@ img {
   .home {
     row-gap: 2rem;
   }
-  .home__img {
-    width: 200px;
-  }
 }
 @media screen and (min-width: 576px) {
   .home {
