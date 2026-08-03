@@ -42,12 +42,12 @@ const scrollActive = () =>{
 }
 window.addEventListener('scroll', scrollActive)
 
-/*===== CONTACT FORM MAILTO HANDLER =====*/
+/*===== CONTACT FORM HANDLER =====*/
 const contactForm = document.getElementById('contact-form')
 const contactStatus = document.getElementById('contact-status')
 
 if(contactForm){
-    contactForm.addEventListener('submit', (event) => {
+    contactForm.addEventListener('submit', async (event) => {
         event.preventDefault()
 
         const name = contactForm.querySelector('input[name="name"]').value.trim()
@@ -65,49 +65,40 @@ if(contactForm){
             contactStatus.textContent = 'Sending your message...'
         }
 
-        const formData = new FormData(contactForm)
-        const subject = encodeURIComponent(`Portfolio Contact from ${name}`)
-        const mailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)
+        try{
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            })
 
-        const isLocalPreview = window.location.protocol === 'file:' ||
-            window.location.hostname === 'localhost' ||
-            window.location.hostname === '127.0.0.1' ||
-            window.location.hostname === '::1'
+            const responseText = await response.text()
+            let result = {}
 
-        if(isLocalPreview){
-            if(contactStatus){
-                contactStatus.textContent = 'Preview mode: this form works fully after deployment to Netlify. Opening your email app now.'
+            if(responseText){
+                try{
+                    result = JSON.parse(responseText)
+                }catch(parseError){
+                    result = { error: responseText }
+                }
             }
-            window.location.href = `mailto:manikantasodapaneedi27@gmail.com?subject=${subject}&body=${mailBody}`
-            return
-        }
 
-        const body = new URLSearchParams(formData).toString()
-
-        fetch('/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body
-        })
-        .then((response) => {
             if(!response.ok){
-                throw new Error('Submission failed')
+                throw new Error(result.error || `Request failed (${response.status})`)
             }
 
             if(contactStatus){
-                contactStatus.textContent = 'Thanks! Your message has been sent.'
+                contactStatus.textContent = result.message || 'Thanks! Your message has been sent.'
             }
 
             contactForm.reset()
-        })
-        .catch(() => {
+        }catch(error){
             if(contactStatus){
-                contactStatus.textContent = 'Preview mode or server not configured. Opening your email app instead.'
+                contactStatus.textContent = error.message || 'Your message could not be sent right now.'
             }
-            window.location.href = `mailto:manikantasodapaneedi27@gmail.com?subject=${subject}&body=${mailBody}`
-        })
+        }
     })
 }
 

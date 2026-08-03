@@ -80,19 +80,11 @@
                                 <i class='bx bxl-html5 skills__icon'></i>
                                 <span class="skills__name">HTML</span>
                             </div>
-                            <div class="skills__bar skills__html"></div>
-                            <div>
-                                <span class="skills__percentage">80%</span>
-                            </div>
                         </div>
                         <div class="skills__data">
                             <div class="skills__names">
                                 <i class='bx bxl-css3 skills__icon'></i>
                                 <span class="skills__name">CSS</span>
-                            </div>
-                            <div class="skills__bar skills__css"></div>
-                            <div>
-                                <span class="skills__percentage">80%</span>
                             </div>
                         </div>
                         <div class="skills__data">
@@ -100,29 +92,17 @@
                                 <i class='bx bxl-javascript skills__icon'></i>
                                 <span class="skills__name">JAVASCRIPT</span>
                             </div>
-                            <div class="skills__bar skills__js"></div>
-                            <div>
-                                <span class="skills__percentage">70%</span>
-                            </div>
                         </div>
                         <div class="skills__data">
                             <div class="skills__names">
                                 <i class='bx bx-code-alt skills__icon'></i>
                                 <span class="skills__name">JAVA</span>
                             </div>
-                            <div class="skills__bar skills__java"></div>
-                            <div>
-                                <span class="skills__percentage">75%</span>
-                            </div>
                         </div>
                         <div class="skills__data">
                             <div class="skills__names">
                                 <i class='bx bx-data skills__icon'></i>
                                 <span class="skills__name">SQL</span>
-                            </div>
-                            <div class="skills__bar skills__sql"></div>
-                            <div>
-                                <span class="skills__percentage">75%</span>
                             </div>
                         </div>
                     </div>
@@ -163,7 +143,7 @@
                         <div class="contact__card">
                             <i class='bx bx-envelope contact__icon'></i>
                             <h3 class="contact__title">Email</h3>
-                            <a href="mailto:manikantasodapaneedi27@gmail.com" class="contact__link">manikantasodapaneedi27@gmail.com</a>
+                            <p class="contact__link">manikantasodapaneedi27@gmail.com</p>
                         </div>
 
                         <div class="contact__card">
@@ -179,16 +159,12 @@
                         </div>
                     </div>
 
-                    <form name="contact" id="contact-form" class="contact__form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="contact">
-                        <p class="contact__honeypot" aria-hidden="true">
-                            <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1"></label>
-                        </p>
+                    <form name="contact" id="contact-form" class="contact__form" method="POST" action="/api/contact">
                         <input type="text" name="name" placeholder="Your Name" class="contact__input" required>
                         <input type="email" name="email" placeholder="Your Email" class="contact__input" required>
                         <textarea name="message" placeholder="Write your message..." cols="0" rows="8" class="contact__input" required></textarea>
                         <input type="submit" value="Send" class="contact__button button">
-                        <p class="contact__status" id="contact-status" role="status" aria-live="polite"></p>
+                        <p class="contact__status" id="contact-status" role="status" aria-live="polite">Ready to send.</p>
                     </form>
                 </div>
             </section>
