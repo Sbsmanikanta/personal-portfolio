@@ -10,6 +10,8 @@
   --hue-color: 224;
   --first-color: hsl(var(--hue-color), 89%, 60%);
   --second-color: hsl(var(--hue-color), 56%, 12%);
+  --page-bg: #e6e6e6;
+  --surface-bg: #f5f5f5;
   /*===== Fuente y tipografia =====*/
   --body-font: "Poppins", sans-serif;
   --big-font-size: 2rem;
@@ -48,6 +50,7 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   color: var(--second-color);
+  background-color: var(--page-bg);
 }
 
 h1, h2, p {
@@ -110,7 +113,7 @@ img {
   top: 0;
   left: 0;
   z-index: var(--z-fixed);
-  background-color: #fff;
+  background-color: rgba(230, 230, 230, 0.96);
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
 }
 
@@ -194,6 +197,11 @@ img {
 .home__title-color {
   color: var(--first-color);
 }
+.home__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .home__social {
   display: flex;
   flex-direction: column;
@@ -219,6 +227,15 @@ img {
 }
 .button:hover {
   box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
+}
+.button--outline {
+  background-color: transparent;
+  color: var(--first-color);
+  border: 2px solid var(--first-color);
+}
+.button--outline:hover {
+  background-color: var(--first-color);
+  color: #fff;
 }
 
 /* ===== ABOUT =====*/
@@ -257,6 +274,7 @@ img {
   padding: 0.5rem 1rem;
   margin-bottom: var(--mb-4);
   border-radius: 0.5rem;
+  background-color: var(--surface-bg);
   box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
 }
 .skills__icon {
@@ -312,7 +330,7 @@ img {
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.12);
-  background-color: #fff;
+  background-color: var(--surface-bg);
 }
 .work__content {
   display: grid;
@@ -390,7 +408,7 @@ img {
   padding: 1rem 1.15rem;
   border-radius: 0.75rem;
   box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
-  background-color: #fff;
+  background-color: var(--surface-bg);
 }
 .contact__icon {
   font-size: 1.5rem;
@@ -463,6 +481,9 @@ img {
 @media screen and (min-width: 576px) {
   .home {
     padding: 4rem 0 2rem;
+  }
+  .home__actions {
+    align-items: center;
   }
   .home__social {
     padding-top: 0;
